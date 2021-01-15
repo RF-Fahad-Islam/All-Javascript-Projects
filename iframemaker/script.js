@@ -1,0 +1,22 @@
+console.log('Connected');
+let iframeUrl = document.getElementById('iframeUrl');
+let iframeCode = document.getElementById('iframeCode');
+let generateIframe = document.getElementById('generateIframe');
+let width = document.getElementById('iframeWidth');
+let height = document.getElementById('iframeHeight');
+let widthSizeType = document.getElementById('widthSizeType');
+let heightSizeType = document.getElementById('heightSizeType');
+let iframePreview = document.getElementById('iframePreview');
+generateIframe.addEventListener('click', (e) => {
+  e.preventDefault();
+  let iframeWidth = width.value + widthSizeType.value;
+  let iframeHeight = height.value + heightSizeType.value;
+  let iframe = document.createElement('iframe');
+  iframe.src = iframeUrl.value;
+  iframe.width = iframeWidth;
+  iframe.height = iframeHeight;
+  console.log(iframe);
+  iframeCode.innerHTML = String(iframe);
+  console.log(iframeCode);
+  iframePreview.appendChild(iframe);
+});

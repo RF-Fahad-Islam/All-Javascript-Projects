@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="healthcalculator.css">
+    <title>Health Calculator - Made By Fahad</title>
+</head>
+
+<body>
+    <!-- !Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light position-sticky sticky-top" id="navbar">
+        <a class="navbar-brand" href="#"><i class="fa fa-fire text-danger"></i> Health
+            Calculator</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#readSection">Read Section</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#help&support">Help & Support</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://forms.gle/45Cmro7TxJoZCx5h9" target="_blank">Take Survey</a>
+                </li>
+            </ul>
+            <span class="navbar-text text-center text-muted font-weight-bolder"><i class="fa fa-copy text-dark"></i>
+                According to BMR & BMI - Calculate Your Health Statistics</span>
+        </div>
+    </nav>
+    <div class="sticky-bottom d-none">
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+                <h5 class="text-white h4">Collapsed content</h5>
+                <span class="text-muted">Toggleable via the navbar brand.</span>
+            </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- !Scroll top button -->
+    <button id="topBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
+    <form id="inputForm">
+
+        <div class="container d-flex justify-content-center align-content-center flex-column flex-wrap">
+            <div class="alert alert-warning my-3 alert-dismissible fade show" id="introAlert" role="alert">
+                <span class="font-weight-bold">
+                    <strong>Fill in the</strong> Form below to calculate your health statistics (Such as: <b>Calorie
+                        need</b> and <b>Health stats</b> ) according to <b>BMR (Body Metabolic Rate)</b> and <b>BMI
+                        (Body Mass Index)</b>
+                </span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="card my-3 box-shadow" style="width: 100%;">
+                <div class="card-body">
+                    <h3 class="text-center"><i class="fa fa-calculator text-dark phone"></i>Calculate Area
+                        <label class="switch float-right">
+                            <input type="checkbox" onclick="darkMode()">
+                            <span class="slider round"></span>
+                        </label>
+                        <hr>
+                    </h3>
+                    <!-- Toggle switch -->
+                    <!-- !Input for Age -->
+                    <div id="ageBox">
+                        <h5 class="card-title">Your Age : </h5>
+                        <div class="input-group mb-3 my-3">
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputAge').value--"><i
+                                        class="fa fa-minus"></i></span>
+                            </div>
+                            <input type="number" class="form-control"
+                                placeholder="Enter Your current age (3 to 80) years" id="inputAge" min="3" max="80"
+                                aria-label="Age" required>
+                            <div class="input-group-prepend valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputAge').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- !Input for Gender -->
+                    <div class="my-3 mx-auto d-block" aria-required="true" id="gender">
+                        <h5 class="d-inline-block">Gender : &nbsp;&nbsp;</h5>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="male" checked value="male">
+                            <label class="form-check-label font-weight-bolder text-muted" for="male"
+                                aria-checked="true"><i class="fa fa-male text-danger"></i> Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                            <label class="form-check-label font-weight-bolder text-muted" for="female"><i
+                                    class="fa fa-female text-success"></i> Female</label>
+                        </div>
+                    </div>
+                    <!-- !Input for Weight -->
+                    <div id="ageBox">
+                        <h5 class="card-title">Your Weight (KG) : </h5>
+                        <div class="input-group mb-3 my-3">
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputWeight').value--"><i
+                                        class="fa fa-minus"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="Weight" id="inputWeight" min="5"
+                                max="200" aria-label="weight" required>
+                            <div class="input-group-prepend valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputWeight').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- !Input for Height -->
+                    <div class="my-3 mx-auto d-block" id="HeightBox">
+                        <h5 class="d-inline-block">Height Measuring Type : &nbsp;&nbsp;</h5>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="heightType" id="centimeter" checked
+                                value="centimeter">
+                            <label class="form-check-label font-weight-bolder text-muted" for="centimeter"
+                                aria-checked="true"><i class="fa fa-check-circle text-danger"></i> Centimeter</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="heightType" id="inches&foot"
+                                value="inches&foot">
+                            <label class="form-check-label font-weight-bolder text-muted" for="inches&foot"><i
+                                    class="fa fa-check-circle text-success"></i> Inches & Foot</label>
+                        </div>
+                    </div>
+
+                    <!-- TODO: Centimeter Box -->
+                    <div id="centimeterBox">
+                        <div class="input-group mb-3 my-3">
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputCentimeter').value--"><i
+                                        class="fa fa-minus"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="Your height in centimeter scale"
+                                id="inputCentimeter" min="1" aria-label="Amount (to the nearest dollar)">
+                            <div class="input-group-prepend valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputCentimeter').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="inchBox" style="display: none;">
+                        <div class="input-group mb-3 my-3">
+                            <!-- TODO: Foots -->
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputFoot').value--" style="font-size: 20px;"><i
+                                        class="fa fa-minus"></i></span>
+                            </div>
+                            <input type="number" id="inputFoot" min="1" max="8" placeholder="Foot" class="form-control"
+                                required />
+                            <div class="input-group-prepend valChanger" style="margin-right: 10px;">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputFoot').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
+
+                            <!-- TODO: Inches -->
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputInch').value--" style="font-size: 20px;"><i
+                                        class="fa fa-minus"></i></span>
+                            </div>
+                            <input type="number" id="inputInch" min="0" max="12" placeholder="Inches"
+                                class="form-control" required />
+                            <div class="input-group-prepend valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputInch').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- !State of health input -->
+                    <div class="mb-3">
+                        <h5>Physical State</h5>
+                        <div class="input-group is-valid">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="physicalState">Options</label>
+                            </div>
+                            <select class="custom-select" id="physicalState" required>
+                                <option value="none">Choose...</option>
+                                <option value="low">Low - no exercise : আমি পরিশ্রমী না
+                                </option>
+                                <option value="normal">Normal - light exercise : হালকা পরিশ্রমী, সপ্তাহে ২-৩ দিন অল্প
+                                    খেলাধুলা বা ব্যায়াম করি</option>
+                                <option value="medium">Medium - moderate exercise : পরিশ্রমী, সপ্তাহে ২-৩ দিন প্রচুর
+                                    খেলাধুলা বা ব্যায়াম করি </option>
+                                <option value="high">High - very active : পরিশ্রমী, সপ্তাহে প্রতিদিন প্রচুর
+                                    খেলাধুলা-ব্যায়াম করি </option>
+                                <option value="veryHigh">Very High - extra active : অত্যন্ত পরিশ্রমী, প্রচুর ব্যায়াম ও
+                                    জিম করি</option>
+                            </select>
+                        </div>
+                        <div class="valid-feedback">
+                            Choose Your Physical State..Or..Exercise rate
+                        </div>
+                    </div>
+                    <div id="settings d-flex justify-content-center align-content-center">
+                        <button id="settingsBtn" class="link btn text-info text-muted font-weight-bolder"><i
+                                class="fa fa-plus"></i> Settings</button>
+                    </div>
+
+                    <!-- !More settings Content -->
+                    <div id="settingSection" style="display: none;">
+                        <div class="my-3 mx-auto" id="calculateType">
+                            <h5 class="d-block">Calculate : &nbsp;&nbsp;</h5>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="calculate" id="bmr" value="bmr">
+                                <label class="form-check-label font-weight-bolder text-muted" for="bmr"
+                                    aria-checked="true"><i class="fa fa-copy text-danger"></i> Calories & BMR</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="calculate" id="bmi" value="bmi">
+                                <label class="form-check-label font-weight-bolder text-muted" for="bmi"
+                                    aria-checked="true"><i class="fa fa-codepen text-warning"></i> Only BMI</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="calculate" id="all" checked
+                                    value="all">
+                                <label class="form-check-label font-weight-bolder text-muted" for="all"><i
+                                        class="fa fa-check text-success"></i> All</label>
+                            </div>
+                        </div>
+
+                        <!-- //results type -->
+                        <div class="my-3 mx-auto" id="resultType">
+                            <h5 class="d-block">Result in (for BMR) : &nbsp;&nbsp;</h5>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="resultIn" id="calories"
+                                    value="calories" class="resultType" checked>
+                                <label class="form-check-label font-weight-bolder text-muted" for="calories"
+                                    aria-checked="true"><i class="fa fa-pencil-square-o text-danger"></i>
+                                    Calories</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="resultIn" id="kiloJoules"
+                                    value="kiloJoules" class="resultType">
+                                <label class="form-check-label font-weight-bolder text-muted" for="kiloJoules"
+                                    aria-checked="true"><i class="fa fa-pencil-square-o text-warning"></i>
+                                    KiloJoules</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- !Calculate & Reset button  -->
+                    <div class="my-3">
+                        <button class="btn btn-primary" type="submit" id="calculate">Calculate</button>
+                        <button class="btn btn-danger" type="reset"
+                            onclick="document.getElementById('inputForm').reset()">Reset</button>
+                    </div>
+
+                    <!-- !Success Alert Section -->
+                    <div class="alert alert-success alert-dismissible sticky-top fade show" style="display: none;"
+                        id="successAlert" role="alert">
+                        <strong>Successfully calculated!</strong> Check Your <a href="#resultBox"
+                            class="link">result</a>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <!-- !Error Alert Section -->
+                    <div class="alert alert-danger alert-dismissible sticky-top fade show" style="display: none;"
+                        id="errorAlert" role="alert">
+                        <strong>Error!</strong> Please Fill in the Form or enter valid values to calculate your health
+                        statistics
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+    </form>
+
+    <!-- !The result -->
+    <div class="card my-3 box-shadow" style="width: 100%;" id="resultBox">
+        <div class="card-body">
+            <h3 class="card-title text-center"><i class="fa fa-calculator"></i> Result</h3>
+            <hr>
+
+            <!-- !Navigator for results -->
+            <div id="navigator" style="display: none; opacity: 0.5;">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+                    <a class="navbar-brand" href="#">Navigator</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#calorieSection">BMR</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    BMI
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#state">State</a>
+                                    <a class="dropdown-item" href="#goodValues">Good BMI & Weight</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#goodWeightDifference">Weight should be</a>
+                                    <a class="dropdown-item" href="#tips">Tips</a>
+                                </div>
+                            </li>
+                            <form class="form-inline my-2 my-lg-0 float-right">
+                                <a class="btn btn-outline-danger my-2 my-sm-0"
+                                    onclick="document.getElementById('navigator').style.display = 'none'"
+                                    type="submit">Hide</a>
+                                <a class="btn btn-outline-success my-2 my-sm-0"
+                                    onclick="document.getElementById('navigator').classList.remove('fixed-top')"
+                                    type="submit">Remove From Top</a>
+                            </form>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <div id="result">
+                <p class="alert alert-warning d-block font-weight-bolder">Your results will
+                    apear here.......</p>
+            </div>
+
+            <!-- TODO: Daily Calorie need Calculate Section -->
+            <div id="calorieSection">
+            </div>
+
+            <!-- TODO: Result Health Section -->
+            <div id="healthSection">
+            </div>
+
+            <!-- !Buttons -->
+            <div class="d-block position-relative" style="bottom: 0px;" id="buttons">
+            </div>
+        </div>
+    </div>
+    <section id="readSection">
+        <div class="card">
+            <h5 class="card-header bg-light">Read Section (Read about BMR & BMI Information) <a class="btn float-right"
+                    id="readSectionBtn"><i class="fa fa-minus float-right"></i></a></h5>
+            <div id="readSectionArticle">
+                <div class="card-body">
+                    <h5 class="text-muted font-weight-bolder d-inline-block">BMI কি? <a
+                            class="link btn text-muted font-weight-bolder" id="BMIMore"><i
+                                class="fa fa-graduation-cap"></i>
+                            Read More..</a></h5>
+
+                    <div id="BMIArticle" style="display: none;">
+                        <p><span class="text-muted font-weight-bolder">= BMI মানে Body Mass Index </span>
+                            = বিএমআই হ'ল ব্যক্তির উচ্চতা এবং ওজনের উপর ভিত্তি করে কোনও ব্যক্তির হতাশতা বা শারীরিক
+                            পরিমাপের
+                            একটি পরিমাপ <br>
+                            এবং
+                            টিস্যু ভরকে পরিমাণমুক্ত করার উদ্দেশ্যে। এটি কোনও ব্যক্তির উচ্চতার জন্য স্বাস্থ্যকর শরীরের
+                            ওজন
+                            আছে কিনা তার
+                            সাধারণ সূচক হিসাবে ব্যাপকভাবে ব্যবহৃত হয়। বিশেষত, <b>BMI এর গণনা থেকে প্রাপ্ত মানটি কোনও
+                                ব্যক্তির
+                                কম ওজন,
+                                স্বাভাবিক ওজন, অতিরিক্ত ওজন বা স্থূলতার সাথে মূল্য নির্ধারণের ক্ষেত্রে কতটা হয় তার উপর
+                                ভিত্তি
+                                করতে
+                                শ্রেণিবদ্ধকরণে ব্যবহৃত হয়। </b> <br>
+                            <hr> বিএমআইয়ের এই ব্যাপ্তিগুলি অঞ্চল এবং বয়স হিসাবে
+                            ফ্যাক্টর উপর ভিত্তি
+                            করে
+                            পরিবর্তিত
+                            হয় এবং কখনও কখনও তীব্রভাবে ওজন বা খুব মারাত্মক স্থূলত্বের মতো উপশ্রেণীতে বিভক্ত হয়।
+                            অতিরিক্ত
+                            ওজন বা কম
+                            ওজনের
+                            হওয়ার কারণে স্বাস্থ্যের উপর উল্লেখযোগ্য প্রভাব থাকতে পারে, সুতরাং বিএমআই যখন স্বাস্থ্যকর
+                            শরীরের
+                            ওজনের একটি
+                            অপূর্ণ পরিমাপ, তখন কোনও অতিরিক্ত পরীক্ষা বা পদক্ষেপ নেওয়া প্রয়োজন কিনা তা একটি দরকারী
+                            সূচক।
+                            ক্যালকুলেটর
+                            দ্বারা
+                            ব্যবহৃত BMI ভিত্তিক বিভিন্ন বিভাগ দেখতে নীচের টেবিলটি দেখুন।</p>
+                        <div id="img d-flex justify-content-center">
+                            <img src="bmi-chart.gif" style="
+                                max-width: 100%;
+                                height: auto;
+                              " class="d-block mx-auto" alt="BMI Chart">
+                        </div>
+                    </div>
+                    <hr>
+                    <h5 class="text-muted font-weight-bolder d-inline-block">BMR কি?</h5> <a
+                        class="link btn text-muted font-weight-bolder" id="BMRMore"><i class="fa fa-graduation-cap"></i>
+                        Read More..</a>
+                    <div id="BMRArticle" style="display: none;">
+                        <p><span class="text-muted font-weight-bolder">= BMR মানে Body Metabolic Rate</span>
+                            ভিত্তিগত
+                            বিপাকের হার (বিএমআর) হ'ল পরিপাকতন্ত্র নিষ্ক্রিয় থাকে যখন একটি নাতিশীতোষ্ণ পরিবেশে বিশ্রাম
+                            নেওয়ার সময় প্রয়োজনীয় শক্তির পরিমাণ। নিষ্ক্রিয় গাড়ি পার্ক করার সময় কতটা গ্যাস খায় তা
+                            নির্ধারণের সমতুল্য। এ জাতীয় অবস্থায় শক্তি কেবলমাত্র গুরুত্বপূর্ণ অঙ্গ রক্ষণাবেক্ষণের জন্য
+                            ব্যবহৃত হবে, যার মধ্যে অন্তর, ফুসফুস, কিডনি, স্নায়ুতন্ত্র, অন্ত্র, লিভার, ফুসফুস,
+                            পেশী এবং ত্বক অন্তর্ভুক্ত। বেশিরভাগ মানুষের জন্য, প্রতিদিন জ্বলিত মোট শক্তি (ক্যালোরি) ~ 70%
+                            এর
+                            ওপরের দিকে রক্ষণাবেক্ষণের কারণে হয়। শারীরিক ক্রিয়াকলাপ expenditure 20% ব্যয় করে এবং 10%
+                            ডলার
+                            খাদ্য হজমের জন্য ব্যবহৃত হয়, এটি থার্মোজেনেসিস নামেও পরিচিত। জেগে থাকাকালীন বিএমআর খুব
+                            সীমাবদ্ধ
+                            পরিস্থিতিতে পরিমাপ করা হয়। একটি সঠিক বিএমআর পরিমাপের জন্য একজন ব্যক্তির সহানুভূতিশীল
+                            স্নায়ুতন্ত্র নিষ্ক্রিয় হওয়া প্রয়োজন, যার অর্থ ব্যক্তিকে অবশ্যই বিশ্রাম নিতে হবে be বেসল
+                            বিপাক সাধারণত কোনও ব্যক্তির মোট ক্যালোরির প্রয়োজনের বৃহত্তম উপাদান। প্রতিদিনের ক্যালোরির
+                            প্রয়োজনীয়তা হ'ল বিএমআর মান ক্রিয়াকলাপের স্তরের উপর নির্ভর করে 1.2 এবং 1.9 এর মধ্যে একটি
+                            গুণকের সাথে গুণিত হয়। বেশিরভাগ পরিস্থিতিতে, <br>
+                            <hr> বিএমআর স্ট্যাটিস্টিকাল ডেটা থেকে সংক্ষিপ্ত
+                            সমীকরণগুলির সাথে অনুমান করা হয়। হ্যারিস-বেনেডিক্ট সমীকরণটি প্রবর্তন করা প্রথম দিকের
+                            সমীকরণগুলির
+                            মধ্যে একটি। এটি আরও নির্ভুল হওয়ার জন্য ১৯৮৪ সালে সংশোধিত হয়েছিল এবং ১৯৯০ সাল পর্যন্ত এটি
+                            ব্যবহার করা হয়েছিল, যখন মিফলিন-সেন্ট জিয়র সমীকরণ চালু হয়েছিল। মিফ্লিন-সেন্ট জ্যোর
+                            সমীকরণটি
+                            সংশোধিত হ্যারিস-বেনেডিক্ট সমীকরণের চেয়ে আরও সঠিক বলে প্রমাণিত হয়েছে। ক্যাচ-ম্যাকআর্ডল
+                            সূত্রটি
+                            সামান্য পৃথক যে এটি দৈনিক শক্তি ব্যয় (আরডিইই) বিশ্রামের জন্য গণনা করে, যা শারীরিক শরীরের
+                            ভরগুলিকে বিবেচনায় নেয়, যা মিফলিন-সেন্ট জওর বা হ্যারিস-বেনিডিক্ট সমীকরণ নয়। এই সমীকরণগুলির
+                            মধ্যে, মিফ্লিন-সেন্ট জওর সমীকরণটি BMR গণনা করার ক্ষেত্রে সবচেয়ে সঠিক সমীকরণ হিসাবে
+                            ব্যতিক্রম
+                            হিসাবে বিবেচিত হয় যে ক্যাচ-ম্যাকআর্ডল সূত্রটি এমন ব্যক্তিদের পক্ষে আরও নির্ভুল হতে পারে
+                            যারা
+                            ঝোঁকযুক্ত এবং তাদের শরীরের ফ্যাট শতাংশের পরিমাণ জানেন know সেটিংস প্রসারিত করে আপনি গণনায়
+                            ব্যবহৃত সমীকরণটি চয়ন করতে পারেন। ক্যালকুলেটর দ্বারা ব্যবহৃত তিনটি সমীকরণ নীচে তালিকাভুক্ত
+                            করা
+                            হয়েছে</p>
+                    </div>
+                    <hr>
+                    <h5 class="text-muted font-weight-bolder d-inline-block">Risks of Overweight?</h5> <a
+                        class="link btn text-muted font-weight-bolder" id="overweightRiskContent"><i
+                            class="fa fa-graduation-cap"></i>
+                        Read This..</a>
+                    <div id="overweightRiskArticle" style="display: none;">
+                        <h6>Risks associated with being overweight</h6>
+                        <p>Being underweight has its own associated risks, listed below:</p>
+                        <ul>
+                            <li>High blood pressure</li>
+                            <li>Higher levels of LDL cholesterol, which is widely considered "bad
+                                cholesterol," lower levels
+                                of HDL cholesterol, considered to be good cholesterol in moderation, and high levels of
+                                triglycerides</li>
+                            <li>Type II diabetes</li>
+                            <li>Coronary heart disease</li>
+                            <li>Stroke</li>
+                            <li>Gallbladder disease</li>
+                            <li>Osteoarthritis, a type of joint disease caused by breakdown of joint
+                                cartilage</li>
+                            <li>Sleep apnea and breathing problems</li>
+                            <li>Certain cancers (endometrial, breast, colon, kidney, gallbladder,
+                                liver)</li>
+                            <li>Low quality of life</li>
+                            <li>Mental illnesses such as clinical depression, anxiety, and others
+                            </li>
+                            <li>Body pains and difficulty with certain physical functions</li>
+                            <li>Generally, an increased risk of mortality compared to those with a
+                                healthy BMI</li>
+                        </ul>
+                        <p>In some cases, being underweight can be a sign of some underlying condition or disease such
+                            as
+                            anorexia nervosa, which has its own risks. Consult your doctor if you think you or someone
+                            you
+                            know is underweight, particularly if the reason for being underweight does not seem obvious.
+                        </p>
+                    </div>
+                    <hr>
+                    <h5 class="text-muted font-weight-bolder d-inline-block">Risks of underweight?</h5>
+                    <a class="link btn text-muted font-weight-bolder" id="underweightRiskContent"><i
+                            class="fa fa-graduation-cap"></i>
+                        Read This..</a>
+                    <div id="underweightRiskArticle" style="display: none;">
+                        <p>Being underweight has its own associated risks, listed below:</p>
+                        <ul>
+                            <li>Malnutrition, vitamin deficiencies, anemia (lowered ability to carry blood vessels)</li>
+                            <li>Osteoporosis, a disease that causes bone weakness, increasing the risk of breaking a
+                                bone
+                            </li>
+                            <li>A decrease in immune function</li>
+                            <li>Growth and development issues, particularly in children and teenagers</li>
+                            <li>Possible reproductive issues for women due to hormonal imbalances that can disrupt the
+                                menstrual cycle. Underweight women also have a higher chance of miscarriage in the first
+                                trimester</li>
+                            <li>Potential complications as a result of surgery</li>
+                            <li>Generally, an increased risk of mortality compared to those with a healthy BMI</li>
+                        </ul>
+                        <p>In some cases, being underweight can be a sign of some underlying condition or disease such
+                            as
+                            anorexia nervosa, which has its own risks. Consult your doctor if you think you or someone
+                            you
+                            know is underweight, particularly if the reason for being underweight does not seem obvious.
+                        </p>
+                    </div>
+                    <hr>
+                    <h5 class="text-muted font-weight-bolder d-inline-block">Limitations of BMI?</h5>
+                    <a class="link btn text-muted font-weight-bolder" id="BMILimitContent"><i
+                            class="fa fa-graduation-cap"></i>
+                        Read This..</a>
+                    <div id="BMILimitArticle" style="display: none;">
+                        <p>Although BMI is a widely used and useful indicator of healthy body weight, it does have its
+                            limitations. BMI is only an estimate that cannot take body composition into account. Due to
+                            a
+                            wide variety of body types as well as distribution of muscle, bone mass, and fat, BMI should
+                            be
+                            considered along with other measurements rather than being used as the sole method for
+                            determining a person's healthy body weight.</p>
+                        <b>In adults : </b>
+                        <p>BMI cannot be fully accurate because it is a measure of excess body weight, rather than
+                            excess
+                            body fat. BMI is further influenced by factors such as age, sex, ethnicity, muscle mass, and
+                            body fat, and activity level, among others. For example, an older person who is considered a
+                            healthy weight, but is completely inactive in their daily life may have significant amounts
+                            of
+                            excess body fat even though they are not heavy. This would be considered unhealthy, while a
+                            younger person with higher muscle composition of the same BMI would be considered healthy.
+                            In
+                            athletes, particularly bodybuilders who would be considered overweight due to muscle being
+                            heavier than fat, it is entirely possible that they are actually at a healthy weight for
+                            their
+                            body composition. Generally, according to the CDC:</p>
+                        <ul>
+                            <li>Older adults tend to have more body fat than younger adults with the same BMI.</li>
+                            <li>Women tend to have more body fat than men for an equivalent BMI.</li>
+                            <li>Muscular individuals and highly trained athletes may have higher BMIs due to large
+                                muscle
+                                mass.</li>
+                        </ul>
+                        <b>In children and adolescents</b>
+                        <p>The same factors that limit the efficacy of BMI for adults can also apply to children and
+                            adolescents. Additionally, height and level of maturation can influence BMI and body fat
+                            among children. BMI is a better indicator of excess body fat for obese children than it is
+                            for
+                            overweight children, whose BMI could be a result of increased levels of either fat or
+                            fat-free
+                            mass (all body components except for fat, which includes water, organs, muscle, etc.). In
+                            thin
+                            children, the difference in BMI can also be due to fat-free mass. <small
+                                class="float-right">source: calculator.net BMI article</small></p>
+                    </div>
+                    <hr>
+                    <h5 class="text-muted font-weight-bolder d-inline-block">BMI Table</h5>
+                    <a class="link btn text-muted font-weight-bolder" id="BMITableContent"><i
+                            class="fa fa-graduation-cap"></i>
+                        Show This..</a>
+                    <div class="card mx-auto" id="BMIStateTable2" style="border: none;
+                    max-width: 100%;
+                    height: auto;
+                    display: none;">
+                        <div class="card-body bg-light">
+                            <b>BMI State Table </b>
+                        </div>
+                        <table class="table table-striped" style="border: 1px solid black;">
+                            <thead>
+                                <tr>
+                                    <th scope="col">BMI</th>
+                                    <th scope="col">Stage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row"> &lt; 18.5</th>
+                                    <td>শরীরের ওজন কম (Underweight)</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">18.5 to 24.9</th>
+                                    <td>সুসাস্থ্যের আদর্শ মান (Normal)</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">25 to 29.9</th>
+                                    <td>শরীরের ওজন বেশি (Overweight)</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">30 to 34.9</th>
+                                    <td>"স্থুল (পর্যায়-১): মেদ বেশি | অতিরিক্ত ওজন (Obese I)</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">35 to 39.9</th>
+                                    <td>বেশি স্থুল (পর্যায়-২) । অতিরিক্ত মেদ (Obese II)</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">&gt 40</th>
+                                    <td>অতিরিক্ত স্থুল (শেষ পর্যায়)। মৃত্যুঝুঁকির আশংকা! (Obese III Extreme)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Section -->
+    <section id="help&support" class="my-3">
+        <div class="card my-3">
+            <h5 class="card-header bg-light">Help and Support <i class="fa fa-question-circle"></i> <a
+                    class="btn float-right" id="helpSectionBtn"><i class="fa fa-minus float-right"></i></a>
+            </h5>
+            <div class="card-body" id="helpArea">
+                <!-- alert -->
+                <div class="alert alert-danger alert-dismissible fade show" id="surveyAlert" style="display: none;"
+                    role="alert">
+                    <strong>Describe Your issue or improvements</strong> By our developer Survey click the button below.
+                    <a href="https://forms.gle/45Cmro7TxJoZCx5h9">Go now!</a>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="alert alert-success alert-dismissible fade show" id="surveyAlert2" style="display: none;"
+                    role="alert">
+                    <strong>Thanks!</strong> for confirming.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <h5 class="text-muted font-weight-bolder d-inline-block">Is there a issue with our app?
+                    <div class="form-check" id="issue">
+                        <input class="form-check-input" type="radio" name="isIssue" id="yesIssue" value="yesIssue">
+                        <label class="form-check-label font-weight-bolder text-muted" for="yesIssue"
+                            aria-checked="true"><i class="fa fa-check text-danger"></i> Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="isIssue" id="noIssue" value="noIssue"
+                            checked>
+                        <label class="form-check-label font-weight-bolder text-muted" for="noIssue"><i
+                                class="fa fa-crosshairs text-success"></i> No</label>
+                    </div>
+
+                    <h5 class="d-block font-weight-bolder text-muted">Are we need to took more improvements? <div
+                            class="form-check" id="improve">
+                            <input class="form-check-input" type="radio" name="isImprove" id="yesImprove"
+                                value="yesIssue">
+                            <label class="form-check-label font-weight-bolder text-muted" for="yesImprove"
+                                aria-checked="true"><i class="fa fa-check text-danger"></i> Yes</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="isImprove" id="noImprove"
+                                value="noImprove" checked>
+                            <label class="form-check-label font-weight-bolder text-muted" for="noImprove"><i
+                                    class="fa fa-crosshairs text-success"></i> No</label>
+                        </div>
+                    </h5>
+                    <a class="btn btn-outline-primary" id="ensureBtn">Ensure</a>
+
+                    <a class="link alert alert-warning btn text-muted font-weight-bolder d-block my-3"
+                        href="https://forms.gle/45Cmro7TxJoZCx5h9" style="display: none;" id="suggestSurvey"><i
+                            class="fa fa-database"></i>
+                        Then took our developer survey and describe your issue with us</a>
+                    <div id="BMRArticle" style="display: block;">
+                        <p><span class="text-muted font-weight-bolder">If there is a issue with our app then describe
+                                your
+                                issue with us. We will solve the issue as soon as possible. Or you might help us to
+                                improve
+                                the app by suggesting a new feature and issues because <b>Your feedback is very
+                                    important to
+                                    us</b></span>
+                        </p>
+                    </div>
+                    <hr>
+                    <p><b>Took the survey to describe a issue of our app or Help us to improve the app.</b></p>
+                    <hr>
+                    <div id="surveyButton">
+                        <a href="https://forms.gle/45Cmro7TxJoZCx5h9" target="_blank"
+                            class="btn btn-outline-warning alert alert-warning font-weight-bolder d-block" rel="noopener noreferrer">Go To Developer Survey</a>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="container" style="margin-top: 10px;">
+        <p><i class="fa fa-thumb-tack"></i> © 2020-2021 | Owned By <b class="text-muted font-weight-bolder">RF Fahad
+                Islam<b> | Made with JavaScript Language <i class="fa fa-git-square"></i>
+    </footer>
+    <!-- Optional JavaScript -->
+    <script src="healthcalculator.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
